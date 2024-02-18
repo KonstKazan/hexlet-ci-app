@@ -21,6 +21,8 @@ jobs:
         run: make install
       - name: Build
         run: make build
+      - name: Start
+        run: make start
       - name: Run test
         run: make test
       - name: Run linter
