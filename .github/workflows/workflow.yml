@@ -18,6 +18,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install
         # Install project
+      - name: Build
+        run: make build
         run: make install
       - name: Run test
         run: make test
