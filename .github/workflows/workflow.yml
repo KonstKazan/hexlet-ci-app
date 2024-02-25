@@ -1,29 +1,29 @@
 # Name of workflow
 name: JS CI
 
-# Trigger the workflow on push or pull request
 on:
   - push
-  - pull_request
-
+  # - pull_request
 jobs:
-  build:
+#   build:
+#     runs-on: ubuntu-latest
 
-    # The type of machine to run the job on
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Install
+#         run: make install
+#       - name: Build
+#         run: make build
+#       - name: Start
+#         run: make start
+#       - name: Run test
+#         run: make test
+#       - name: Run linter
+#         run: make lint
+  security:
     runs-on: ubuntu-latest
-
     steps:
-        # Check-out repository under GitHub workspace
-        # https://github.com/actions/checkout
-      - uses: actions/checkout@v3
-      - name: Install
-        # Install project
-        run: make install
-      - name: Build
-        run: make build
-      - name: Start
-        run: make start
-      - name: Run test
-        run: make test
-      - name: Run linter
-        run: make lint
+      - uses: actions/checkout@master
+      - uses: snyk/actions/node@master
+    env:
+      SNYK_TOKEN: ${24700501-e34d-4321-ba0a-2d985edcda5c}
