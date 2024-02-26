@@ -1,36 +1,24 @@
-# Name of workflow
-name: JS CI
-
-on:
-  - push
-  # - pull_request
+name: project CI
+ 
+on: push
+ 
 jobs:
   build:
+ 
     runs-on: ubuntu-latest
-
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Install
-#         run: make install
-#       - name: Build
-#         run: make build
-#       - name: Start
-#         run: make start
-#       - name: Run test
-#         run: make test
-#       - name: Run linter
-#         run: make lint
-  security:
-    runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - run: npm test
-      - uses: actions/checkout@master
-      - uses: snyk/actions/node@master
-    env:
-      SNYK_TOKEN: SNYK_TOKEN
+      - uses: actions/checkout@v3
+ 
+      - uses: snyk/actions/node@v0.3.0
+        env: 
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+ 
+      - uses: actions/setup-node@v3
+          with: 
+            node-vers: 20
+            cache: 'npm'
+ 
+      - run: make setup
+      - run: make test
+      - run: make lint
