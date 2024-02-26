@@ -26,4 +26,4 @@ jobs:
       - uses: actions/checkout@master
       - uses: snyk/actions/node@master
     env:
-      SNYK_TOKEN: ${b40a7724-0bf3-4429-8ed5-beb3462a5893}
+      SNYK_TOKEN: ${ secrets.SNYK_TOKEN }
